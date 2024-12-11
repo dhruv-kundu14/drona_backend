@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const cron = require('node-cron');
-const { fetchAndGenerateCSV,deleteFile } = require('./Controller/DbDataToCsv.js');
-const { sendEmail } = require('./Controller/Mail');
+const { fetchAndGenerateCSV,deleteFile } = require('./Email/DbDataToCsv.js');
+const { sendEmail } = require('./Email/Mail');
 require('dotenv').config(); // Load environment variables
 
 const { MongoConnection } = require('./Config/mongo.js');
@@ -55,7 +55,7 @@ app.use(errorHandler);
 // Cron Job: Fetch Data, Generate CSV, and Send Email
 const setupCronJob = () => {
   const recipientEmail = 'recipient@example.com'; // Set recipient email
-  const subject = 'User Data CSV';
+  const subject = 'Registered Data CSV';
   const body = 'Please find the attached CSV file containing user data.';
 
   cron.schedule('0 23 * * *', async () => {
@@ -71,7 +71,7 @@ const setupCronJob = () => {
   });
 
 
-  console.log('Cron job scheduled: Runs every 5 minutes');
+  console.log('Cron job scheduled: Runs everyday at 11pm');
 };
 
 
