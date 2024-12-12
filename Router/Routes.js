@@ -2,11 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 // Import controller functions
-// const ctrlFetchProducts = require('../Controller/fetchProducts');
-// const ctrlAuth = require('../Controller/loginForm'); // Add the auth controller
-// const registerFormController = require('../Controller/registerForm'); // Import the register controller
-// const productController = require('../Controller/productsDetail'); // Import the controller
-// const reverseGeoController = require('../Controller/reverseGeo')
+const ctrlregisterData = require('../Controller/Register');
+const ctrlcareerData = require('../Controller/Career');
 
 /**
  * @swagger
@@ -40,13 +37,8 @@ const router = express.Router();
 
 // Route for fetching products (GET request)
 
-// router.post('/api/register', ctrlAuth.registerUser);
-// router.post('/api/loginForm', ctrlAuth.loginUser);
-// router.post('/api/registerForm', registerFormController.registerUser);
-// router.get('/getProducts', productController.getProducts);      // get all product form db
-// router.post('/enterProducts', productController.enterProducts); // enter product in db
-// router.get('/fetchProducts', ctrlFetchProducts.fetchProducts); // filter product fetch 
-// router.get('/address', reverseGeoController.reverseGeo);
+router.post('/api/registerData', ctrlregisterData.Register);
+router.post('/api/careerData', ctrlcareerData.Career);
 
 // Example route handler
 router.get('/example', (req, res) => {
