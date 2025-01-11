@@ -4,6 +4,8 @@ const router = express.Router();
 // Import controller functions
 const ctrlregisterData = require('../Controller/Register');
 const ctrlcareerData = require('../Controller/Career');
+const ctrlcreateOrder = require('../Controller/Payment');
+
 
 /**
  * @swagger
@@ -39,6 +41,10 @@ const ctrlcareerData = require('../Controller/Career');
 
 router.post('/api/registerData', ctrlregisterData.Register);
 router.post('/api/careerData', ctrlcareerData.Career);
+
+// Payment route
+router.post('/payment/create-order', ctrlcreateOrder.createOrder);
+
 
 // Example route handler
 router.get('/example', (req, res) => {
