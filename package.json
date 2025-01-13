@@ -16,7 +16,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "helmet": "^8.0.0",
-    "mongoose": "^8.8.4",
+    "mongoose": "^8.9.4",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.9.16",
     "razorpay": "^2.9.5"

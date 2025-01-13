@@ -5,46 +5,88 @@ const router = express.Router();
 const ctrlregisterData = require('../Controller/Register');
 const ctrlcareerData = require('../Controller/Career');
 const ctrlcreateOrder = require('../Controller/Payment');
-
+const ctrlpurchaseHistory = require('../Controller/BuyingHistory'); // New controller for purchase history
 
 /**
  * @swagger
  *  components:
  *    schemas:
- *        SchemaValidator:
+ *        PurchaseHistory:
  *                type: object
  *                properties:
- *                    schemaShortCode:
+ *                    userId:
  *                          type: string
- *                    dataJson:
- *                          type: object
+ *                    items:
+ *                          type: array
+ *                          items:
+ *                              type: object
+ *                              properties:
+ *                                  id:
+ *                                      type: string
+ *                                  name:
+ *                                      type: string
+ *                                  price:
+ *                                      type: number
+ *                                  quantity:
+ *                                      type: number
+ *                                  purchaseDate:
+ *                                      type: string
+ *                                      format: date-time
+ *                                  image:
+ *                                      type: string
  */
 
 /**
  * @swagger
- * /compliance-api/validateSchema:
+ * /api/purchase-history:
  *  post:
- *      summary: Used to validate schema against data
- *      description: Validates schema against input data
+ *      summary: Save purchase history
+ *      description: Save user purchase history to the database
  *      requestBody:
  *          required: true
  *          content:
  *              application/json:
  *                  schema:
- *                    $ref: '#components/schemas/SchemaValidator'
+ *                    $ref: '#components/schemas/PurchaseHistory'
  *      responses:
- *          200:
- *              description: Successful response
+ *          201:
+ *              description: Purchase history saved successfully
+ *          400:
+ *              description: Invalid request data
+ *          500:
+ *              description: Server error
  */
 
-// Route for fetching products (GET request)
+/**
+ * @swagger
+ * /api/purchase-history:
+ *  get:
+ *      summary: Get purchase history
+ *      description: Retrieve user purchase history from the database
+ *      parameters:
+ *          - in: query
+ *            name: userId
+ *            schema:
+ *              type: string
+ *            required: true
+ *            description: User ID to fetch history for
+ *      responses:
+ *          200:
+ *              description: Successful response with purchase history
+ *          400:
+ *              description: User ID is required
+ *          500:
+ *              description: Server error
+ */
 
+// Existing routes
 router.post('/api/registerData', ctrlregisterData.Register);
 router.post('/api/careerData', ctrlcareerData.Career);
-
-// Payment route
 router.post('/payment/create-order', ctrlcreateOrder.createOrder);
 
+// Purchase history routes
+router.post('/api/purchase-history', ctrlpurchaseHistory.PostHistory);
+router.get('/api/purchase-history', ctrlpurchaseHistory.GetHistory);
 
 // Example route handler
 router.get('/example', (req, res) => {
