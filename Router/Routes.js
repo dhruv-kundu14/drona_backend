@@ -6,6 +6,8 @@ const ctrlregisterData = require('../Controller/Register');
 const ctrlcareerData = require('../Controller/Career');
 const ctrlcreateOrder = require('../Controller/Payment');
 const ctrlpurchaseHistory = require('../Controller/BuyingHistory'); // New controller for purchase history
+const ctrlAuth = require('../Controller/Login'); // Add the auth controller
+const registerFormController = require('../Controller/Registeration'); 
 
 /**
  * @swagger
@@ -87,6 +89,9 @@ router.post('/payment/create-order', ctrlcreateOrder.createOrder);
 // Purchase history routes
 router.post('/api/purchase-history', ctrlpurchaseHistory.PostHistory);
 router.get('/api/purchase-history', ctrlpurchaseHistory.GetHistory);
+
+router.post('/api/loginForm', ctrlAuth.loginUser);
+router.post('/api/registerForm', registerFormController.registerUser)
 
 // Example route handler
 router.get('/example', (req, res) => {
