@@ -9,7 +9,7 @@ const registerUser = async (req, res) => {
     // Validation logic can be added here if necessary
 
     // Insert user data into MongoDB
-    const result = await getDb().collection('userData').insertOne(userData);
+    const result = await getDb().collection('dronaLogin').insertOne(userData);
     res.status(201).json({ message: 'User registered successfully', result });
     console.log("register User")
   } catch (error) {
