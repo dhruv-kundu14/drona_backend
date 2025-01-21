@@ -40,7 +40,7 @@ const loginUser = async (req, res) => {
         console.error('Error generating token:', err);
         return res.status(500).json({ message: 'Internal Server Error' });
       }
-      res.status(200).json({ message: 'Login successful', token });
+      res.status(200).json({ message: 'Login successful', token, userId: user._id });
     //   console.log("login user")
     });
   } catch (error) {
