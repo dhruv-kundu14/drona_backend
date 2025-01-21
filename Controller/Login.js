@@ -26,7 +26,7 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await getDb().collection('userData').findOne({ email });
+    const user = await getDb().collection('dronaLogin').findOne({ email });
     if (!user) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
